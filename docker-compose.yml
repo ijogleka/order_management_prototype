@@ -1,0 +1,58 @@
+version: '3'
+
+volumes:
+  postgres_data: {}
+
+services:
+  admin-gateway:
+    image: node:alpine
+    user: "node"
+    working_dir: /home/node/admin-gateway
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./admin-gateway:/home/node/admin-gateway
+      - ./admin-gateway/node_modules:/home/node/admin-gateway/node_modules
+    expose:
+      - "3002"
+    command: [sh, -c, "npm i && ./node_modules/.bin/nodemon app.js"]
+  address-verification-service:
+    image: node:alpine
+    user: "node"
+    working_dir: /home/node/address-verification-service
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./address-verification-service:/home/node/address-verification-service
+      - ./address-verification-service/node_modules:/home/node/address-verification-service/node_modules
+    expose:
+      - "3003"
+    command: [sh, -c, "npm i && ./node_modules/.bin/nodemon app.js"]
+  tax-service:
+    image: node:alpine
+    user: "node"
+    working_dir: /home/node/tax-service
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./tax-service:/home/node/tax-service
+      - ./tax-service/node_modules:/home/node/tax-service/node_modules
+    expose:
+      - "3003"
+    command: [sh, -c, "npm i && ./node_modules/.bin/nodemon app.js"]
+  db:
+    image: postgres:11
+    container_name: opg_postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./dbs_setup/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '5432:5432'
