@@ -4,47 +4,25 @@ volumes:
   postgres_data: {}
 
 services:
-  admin-gateway:
+  order-payment-gateway:
     image: node:alpine
     user: "node"
-    working_dir: /home/node/admin-gateway
+    working_dir: /home/node/order-payment-gateway
     environment:
       - NODE_ENV=development
+      - SHOPIFY_AUTHENTICATED_STORE_URL=$SHOPIFY_AUTHENTICATED_STORE_URL
+      - STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
+      - SMARTYSTREETS_AUTH_ID=$SMARTYSTREETS_AUTH_ID
+      - SMARTYSTREETS_AUTH_TOKEN=$SMARTYSTREETS_AUTH_TOKEN
+      - AVALARA_USERNAME=$AVALARA_USERNAME
+      - AVALARA_PASSWORD=$AVALARA_PASSWORD
     ports:
       - "3002:3002"
     volumes:
-      - ./admin-gateway:/home/node/admin-gateway
-      - ./admin-gateway/node_modules:/home/node/admin-gateway/node_modules
+      - ./order-payment-gateway:/home/node/order-payment-gateway
+      - ./order-payment-gateway/node_modules:/home/node/order-payment-gateway/node_modules
     expose:
       - "3002"
-    command: [sh, -c, "npm i && ./node_modules/.bin/nodemon app.js"]
-  address-verification-service:
-    image: node:alpine
-    user: "node"
-    working_dir: /home/node/address-verification-service
-    environment:
-      - NODE_ENV=development
-    ports:
-      - "3003:3003"
-    volumes:
-      - ./address-verification-service:/home/node/address-verification-service
-      - ./address-verification-service/node_modules:/home/node/address-verification-service/node_modules
-    expose:
-      - "3003"
-    command: [sh, -c, "npm i && ./node_modules/.bin/nodemon app.js"]
-  tax-service:
-    image: node:alpine
-    user: "node"
-    working_dir: /home/node/tax-service
-    environment:
-      - NODE_ENV=development
-    ports:
-      - "3004:3004"
-    volumes:
-      - ./tax-service:/home/node/tax-service
-      - ./tax-service/node_modules:/home/node/tax-service/node_modules
-    expose:
-      - "3003"
     command: [sh, -c, "npm i && ./node_modules/.bin/nodemon app.js"]
   db:
     image: postgres:11
