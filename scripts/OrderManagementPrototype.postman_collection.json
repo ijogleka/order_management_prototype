@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "dc274841-8216-4d11-be42-3ec99ece84b2",
+		"name": "Order Management Prototype",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/products/?product_type=digital-ad",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "product_type",
+									"value": "digital-ad"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"handle\": \"digital-ad-insta\",\n    \"metafields\": [\n        {\n            \"description\": \"mock description\",\n            \"key\": \"ia0001 key\",\n            \"value\": \"ia0001 value\",\n            \"namespace\": \"digital-ad\"\n        }\n    ],\n    \"productType\": \"digital-ad\",\n    \"published\": true,\n    \"status\": \"ACTIVE\",\n    \"title\": \"Instagram Ads\",\n    \"variants\": [\n        {\n            \"sku\": \"IA0001\",\n            \"title\": \"Instagram Ad Type A\",\n            \"price\": \"0.4\",\n            \"requiresShipping\": false,\n            \"taxable\": true\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/products/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/products/6624698106061/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"products",
+								"6624698106061",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/opg/v1/products/6624169099469",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"opg",
+								"v1",
+								"products",
+								"6624169099469"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ijoglekar@gmail.com\",\n    \"firstName\": \"Indrajeet (ijoglekar)\",\n    \"lastName\": \"Joglekar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/customers/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/customers/5091353067725/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"customers",
+								"5091353067725",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkout",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\": \"5090879832269\",\n    \"email\": \"indrajeet.joglekar@compass.com\",\n    \"lineItems\": [\n        {\n            \"quantity\": 1,\n            \"variantId\": \"39629534691533\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/orders/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mark Order As Paid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/orders/mark-as-paid/3668175323341/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"orders",
+								"mark-as-paid",
+								"3668175323341",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/orders/close/3668175323341/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"orders",
+								"close",
+								"3668175323341",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refund Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/opg/v1/orders/refund/3668104741069",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"opg",
+								"v1",
+								"orders",
+								"refund",
+								"3668104741069"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Add Payment Method",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Indrajeet Joglekar\",\n    \"email\": \"ijoglekar@gmail.com\",\n    \"phone\": \"+1 2345678901\",\n    \"address\": {\n        \"city\": \"Malvern\",\n        \"country\": \"US\",\n        \"line1\": \"58 Swedesford Road\",\n        \"line2\": \"Unit 204\",\n        \"postal_code\": \"19355\",\n        \"state\": \"PA\"\n    },\n    \"card\": {\n        \"exp_month\": \"04\",\n        \"exp_year\": \"2024\",\n        \"number\": \"4242424242424242\",\n        \"cvc\": \"001\",\n        \"name\": \"Indrajeet Joglekar\",\n        \"address_city\": \"Malvern\",\n        \"address_country\": \"US\",\n        \"address_line1\": \"58 Swedesford Road\",\n        \"address_line2\": \"Unit 204\",\n        \"address_zip\": \"19355\",\n        \"address_state\": \"PA\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment Method",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/pm_1IusbfIxgVauT8U1YIpP56QG/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								"pm_1IusbfIxgVauT8U1YIpP56QG",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Payment Method",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/pm_1IusbfIxgVauT8U1YIpP56QG/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								"pm_1IusbfIxgVauT8U1YIpP56QG",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Payment Method",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Indrajeet Joglekar\",\n    \"email\": \"ijogleka@gmail.com\",\n    \"phone\": \"+1 2345678901\",\n    \"address\": {\n        \"city\": \"Malvern\",\n        \"country\": \"US\",\n        \"line1\": \"58 Swedesford Road\",\n        \"line2\": \"Unit 200\",\n        \"postal_code\": \"19355\",\n        \"state\": \"PA\"\n    },\n    \"card\": {\n        \"exp_month\": \"04\",\n        \"exp_year\": \"2024\",\n        \"number\": \"4242424242424242\",\n        \"cvc\": \"001\",\n        \"name\": \"Indrajeet Joglekar\",\n        \"address_city\": \"Malvern\",\n        \"address_country\": \"US\",\n        \"address_line1\": \"58 Swedesford Road\",\n        \"address_line2\": \"Unit 204\",\n        \"address_zip\": \"19355\",\n        \"address_state\": \"PA\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/pm_1IusbfIxgVauT8U1YIpP56QG/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								"pm_1IusbfIxgVauT8U1YIpP56QG",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": {\n        \"city\": \"Malvern\",\n        \"country\": \"PA\"\n    },\n    \"email\": \"ijoglekar@gmail.com\",\n    \"payment_method\": \"pm_1IusbfIxgVauT8U1YIpP56QG\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/customers/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Payment Methods (Customer)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/?customer_id=cus_JXzl9xIFI68kIU&type=card",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								""
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "cus_JXzl9xIFI68kIU"
+								},
+								{
+									"key": "type",
+									"value": "card"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 50,\n    \"currency\": \"usd\",\n    \"payment_method\": \"pm_1IusbfIxgVauT8U1YIpP56QG\",\n    \"customer\": \"cus_JXzl9xIFI68kIU\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/payment_methods/pay/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"payment_methods",
+								"pay",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Verify Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line1\": \"58 Swedesford Road\",\n    \"line2\": \"Unit 204\",\n    \"city\": \"Malvern\",\n    \"state\": \"PA\",\n    \"zipCode\": \"19355\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/address/verify/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"address",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Taxes",
+			"item": [
+				{
+					"name": "Calculate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"SalesInvoice\",\n    \"date\": \"2017-04-12\",\n    \"customerCode\": \"ABC\",\n    \"purchaseOrderNo\": \"2017-04-12-001\",\n    \"addresses\": {\n      \"SingleLocation\": {\n        \"line1\": \"58 Swedesford Road\",\n        \"city\": \"Malvern\",\n        \"region\": \"PA\",\n        \"country\": \"US\",\n        \"postalCode\": \"19355\"\n      }\n    },\n    \"lines\": [\n      {\n        \"number\": \"1\",\n        \"quantity\": 1,\n        \"amount\": 100,\n        \"taxCode\": \"PS081282\",\n        \"itemCode\": \"Y0001\",\n        \"description\": \"Yarn\"\n      }\n    ],\n    \"commit\": true,\n    \"currencyCode\": \"USD\",\n    \"description\": \"Yarn\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/opg/v1/taxes/calculate/",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"opg",
+								"v1",
+								"taxes",
+								"calculate",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/opg/v1/customers/",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"opg",
+						"v1",
+						"customers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Associate Customer to Checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/opg/v1/checkout/Z2lkOi8vc2hvcGlmeS9DdXN0b21lci81MDg5OTUwNTY0NTU3/create",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"opg",
+						"v1",
+						"checkout",
+						"Z2lkOi8vc2hvcGlmeS9DdXN0b21lci81MDg5OTUwNTY0NTU3",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add line item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/opg/v1/checkout/abcd/efgh/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"opg",
+						"v1",
+						"checkout",
+						"abcd",
+						"efgh",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
